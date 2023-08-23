@@ -40,6 +40,7 @@ sam build
 sam deploy -g
 ```
 4. During the prompts for 'sam deploy -g', enter the below inputs for the prompts:
+```
 * Stack Name [sam-app]: food-delivery-app
 * AWS Region [us-east-1]: us-east-1
 * Parameter ApiStageName [production]: production
@@ -50,6 +51,7 @@ sam deploy -g
 * Save arguments to configuration file [Y/n]: Y
 * SAM configuration file [samconfig.toml]:
 * SAM configuration environment [default]:
+```
 
 In the midst of deployment, you should receive an email to confirm the SNS subscription. The template configures your provided email address to an SNS topic to receive the delivery notification.
 
