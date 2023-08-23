@@ -24,26 +24,34 @@ This project creates a state machine in AWS Step Functions to implement a workfl
 
 ## Deployment instructions
 
-This project contains a SAM template which can be deployed this project. You can use online WebSocket tester [PieSocket](https://www.piesocket.com/websocket-tester) or use wscat to test the WebSocket. You can use AWS CLI to make GetActivityTask & SendTaskSuccess API call to progress the state machine workflow.
+This project contains a SAM template which can be deployed this project. You can use [wscat](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-how-to-call-websocket-api-wscat.html) to test the WebSocket. You can use AWS CLI to make GetActivityTask & SendTaskSuccess API call to progress the state machine workflow.
 
 1. Create a new directory, navigate to that directory in a terminal and clone the GitHub repository:
 ```bash
-git clone https://github.com/aws-samples/serverless-patterns
+git clone https://github.com/aws-samples/aws-apigw-websocket-delivery-workflow.git
 ```
 2. Change directory to the project directory
 ```bash
-cd apigw-websocket-api-sf-sns
+cd aws-apigw-websocket-delivery-workflow
 ```
 3. From the command line, use AWS SAM to deploy the AWS resources for the pattern as specified in the template.yaml file:
 ```bash
 sam build
 sam deploy -g
 ```
-4. During the prompts:
-* Enter the stak name you wish to give
-* Provide the ARN for Amazon SNS topic
-* Provide the ARN for AWS Step Functions Activity
-* Provide the stage name for API Gateway WebSocket API
+4. During the prompts for 'sam deploy -g', enter the below inputs for the prompts:
+* Stack Name [sam-app]: food-delivery-app
+* AWS Region [us-east-1]: us-east-1
+* Parameter ApiStageName [production]: production
+* Parameter Email []: <your_active_email_address>
+* Confirm changes before deploy [y/N]: y
+* Allow SAM CLI IAM role creation [Y/n]: Y
+* Disable rollback [y/N]: y
+* Save arguments to configuration file [Y/n]: Y
+* SAM configuration file [samconfig.toml]:
+* SAM configuration environment [default]:
+
+In the midst of deployment, you should receive an email to confirm the SNS subscription. The template configures your provided email address to an SNS topic to receive the delivery notification.
 
 ## Testing
 
