@@ -19,9 +19,6 @@
           },
           "restaurantDetails": {
             "S.$": "$.restaurantDetails"
-          },
-          "ttl": {
-            "S.$": "$.ttl"
           }
         }
       },

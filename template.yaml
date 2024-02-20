@@ -50,9 +50,6 @@ Resources:
       ProvisionedThroughput:
         ReadCapacityUnits: 5
         WriteCapacityUnits: 5
-      TimeToLiveSpecification:
-        AttributeName:  ttl
-        Enabled: true
 
 
 #######################################################
@@ -225,10 +222,9 @@ Resources:
           Fn::Sub: |
             #set ( $order = $input.path('$.orderDetails'))
             #set ($cust =$input.path('$.customerId'))
-            #set( $ttl = $context.requestTimeEpoch + 7776000) 
             #set ($restaurant =$input.path('$.restaurantDetails'))
             {
-                "input":"{\"connectionId\" : \"${!context.connectionId}\", \"ttl\":\"$ttl\",\"apigwrequestid\":\"${!context.extendedRequestId}\",\"orderDetails\":\"$order\",\"customerId\":\"$cust\",\"restaurantDetails\":\"$restaurant\"}",
+                "input":"{\"connectionId\" : \"${!context.connectionId}\",\"apigwrequestid\":\"${!context.extendedRequestId}\",\"orderDetails\":\"$order\",\"customerId\":\"$cust\",\"restaurantDetails\":\"$restaurant\"}",
                 "stateMachineArn": "${orderWorkflow}",
                 "name": "${!context.connectionId}"
             }
